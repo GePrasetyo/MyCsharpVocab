@@ -7,6 +7,11 @@ public class AvatarPlayer : Character
 
     }
 
+    public AvatarPlayer(string name, bool networkReplication) : this(name, new Transform(), networkReplication)
+    {
+
+    }
+
     protected override void Spawn()
     {
         base.Spawn();

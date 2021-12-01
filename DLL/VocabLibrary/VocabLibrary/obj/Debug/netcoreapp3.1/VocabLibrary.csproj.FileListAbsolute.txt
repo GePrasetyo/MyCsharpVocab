@@ -1,0 +1,9 @@
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\bin\Debug\netcoreapp3.1\VocabLibrary.deps.json
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\bin\Debug\netcoreapp3.1\VocabLibrary.dll
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\bin\Debug\netcoreapp3.1\VocabLibrary.pdb
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\obj\Debug\netcoreapp3.1\VocabLibrary.csprojAssemblyReference.cache
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\obj\Debug\netcoreapp3.1\VocabLibrary.AssemblyInfoInputs.cache
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\obj\Debug\netcoreapp3.1\VocabLibrary.AssemblyInfo.cs
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\obj\Debug\netcoreapp3.1\VocabLibrary.csproj.CoreCompileInputs.cache
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\obj\Debug\netcoreapp3.1\VocabLibrary.dll
+D:\Majin\[UNITY]\CSharp_Vocab\DLL\VocabLibrary\VocabLibrary\obj\Debug\netcoreapp3.1\VocabLibrary.pdb

@@ -1,16 +1,17 @@
 using UnityEngine;
+using MajinLib.Utilities;
 
 public class TestManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(MagicLibrary.AddDaysDuration(3));
+        Debug.Log(MagicLibrary.AddHoursDuration(10));
+
+        Debug.Log(MagicLibrary.NowMilliseconds());
         
+        Debug.Log(MagicLibrary.Add(5,6));
+        Debug.Log(MagicLibrary.Sub(1, 6));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -5,17 +5,10 @@ using System;
 
 namespace Majingari.Pool {
     public class PoolGeneric : MonoBehaviour {
-        private struct PoolContainer {
-            public object Pool;
-        }
-
-        private readonly Dictionary<Type, PoolContainer> poolMonoCollection = new Dictionary<Type, PoolContainer>();
+        private readonly Dictionary<Type, object> poolMonoCollection = new Dictionary<Type, object>();
 
         public void InitializePool<T>(T item, int capacity = 1) where T : MonoBehaviour {
-            var _pc = new PoolContainer();
-            _pc.Pool = new ObjectPool<T>(() => CreatePooledItem(item), OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, capacity);
-
-            poolMonoCollection[typeof(T)] = _pc;
+            poolMonoCollection[typeof(T)] = new ObjectPool<T>(() => CreatePooledItem(item), OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, capacity);
         }
 
         public bool GetPoolMono<T>(out T go, T item) where T : MonoBehaviour {
@@ -23,13 +16,13 @@ namespace Majingari.Pool {
                 InitializePool(item);
             }
 
-            var op = poolMonoCollection[typeof(T)].Pool as ObjectPool<T>;
+            var op = poolMonoCollection[typeof(T)] as ObjectPool<T>;
             go = op.Get() as T;
             return true;
         }
 
         public void Release<T>(T item) where T : MonoBehaviour {
-            var op = poolMonoCollection[typeof(T)].Pool as ObjectPool<T>;
+            var op = poolMonoCollection[typeof(T)] as ObjectPool<T>;
             op.Release(item);
         }
 

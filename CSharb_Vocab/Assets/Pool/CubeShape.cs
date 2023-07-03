@@ -11,6 +11,7 @@ namespace Majingari.Pool {
             if (timer >= 1.5f) {
                 pm.Release(this);
                 timer = 0;
+                gameObject.SetActive(false);
             }
         }
 

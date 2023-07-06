@@ -21,10 +21,10 @@ namespace Majingari.Pool {
 
         void Update() {
             if (Input.GetKeyDown(KeyCode.A)) {
-                SpawnVFX1();
+                SpawnSphere();
             }
             if (Input.GetKeyDown(KeyCode.B)) {
-                SpawnVFX2();
+                SpawnCube();
             }
 
             if (!UpdateSpawn)

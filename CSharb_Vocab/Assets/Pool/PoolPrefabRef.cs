@@ -6,6 +6,10 @@ namespace Majingari.Pool {
     public class PoolPrefabRef : MonoBehaviour {
         private readonly Dictionary<object, object> poolbyRefCollection = new Dictionary<object, object>();
 
+        private void Awake() {
+            DontDestroyOnLoad(gameObject);
+        }
+
         /// <summary>
         /// Initialize Pool by prefab reference
         /// </summary>
@@ -13,6 +17,10 @@ namespace Majingari.Pool {
         /// <param name="key">prefab reference</param>
         /// <param name="capacity">capacity to instantiate</param>
         public void InitializePoolRef<T>(object key, int capacity = 1) where T : Component {
+            if ((T)key == null) {
+                return;
+            }
+
             poolbyRefCollection[key] = new ObjectPool<T>(() => CreatePooledItem((T)key), OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, capacity);
         }
 
@@ -24,6 +32,11 @@ namespace Majingari.Pool {
         /// <param name="key">prefab as a key</param>
         /// <returns></returns>
         public bool GetPoolRef<T>(out T output, object key) where T : Component {
+            if ((T)key == null) {
+                output = null;
+                return false;
+            }
+
             if (!poolbyRefCollection.ContainsKey(key)) {
                 InitializePoolRef<T>(key);
             }
@@ -40,20 +53,25 @@ namespace Majingari.Pool {
         /// <param name="key">prefab reference</param>
         /// <param name="item">item to release to pool</param>
         public void Release<T>(object key, object item) where T : Component {
-            var op = poolbyRefCollection[key] as ObjectPool<T>;
-            op.Release((T)item);
+            if ((T)key == null || (T)item == null) {
+                return;
+            }
+
+            if (poolbyRefCollection.TryGetValue(key, out var op)) {
+                (op as ObjectPool<T>).Release((T)item);
+            }
         }
 
         private T CreatePooledItem<T>(T item) where T : Component {
-            return Instantiate(item) as T;
+            return Instantiate(item, this.transform) as T;
         }
 
         private void OnReturnedToPool<T>(T obj) where T : Component {
-            //obj.gameObject.SetActive(false);
+            obj.transform.SetParent(this.transform);
         }
 
         private void OnTakeFromPool<T>(T obj) where T : Component {
-            //obj.gameObject.SetActive(true);
+            obj.transform.SetParent(null);
         }
 
         private void OnDestroyPoolObject<T>(T obj) where T : Component {
